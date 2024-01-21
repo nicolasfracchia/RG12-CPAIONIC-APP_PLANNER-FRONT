@@ -1,8 +1,10 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonRow, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { GoalsService } from 'src/app/services/goals.service';
 import { Goal } from '../../interfeces/goal';
+import { ellipse, informationCircle } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-goals',
@@ -27,13 +29,17 @@ import { Goal } from '../../interfeces/goal';
     IonRow,
     IonItemSliding,
     IonItemOptions,
-    IonItemOption
+    IonItemOption,
+    IonText,
+    IonIcon,
+    IonPopover
   ]
 })
 export class GoalsComponent  implements OnInit {
   public itemsInfo!: Goal[] | undefined;
 
   constructor(private _goalsService: GoalsService, private datePipe: DatePipe) { 
+    addIcons({ ellipse, informationCircle });
     this.loadGoalsInfo();
   }
 
