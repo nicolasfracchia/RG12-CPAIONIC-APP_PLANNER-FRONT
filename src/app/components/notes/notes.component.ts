@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonAccordion, IonAccordionGroup, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonRow, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAccordion, IonAccordionGroup, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { Note } from '../../interfeces/note';
 import { NotesService } from 'src/app/services/notes.service';
+import { ellipse, informationCircle } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-notes',
@@ -31,13 +33,17 @@ import { NotesService } from 'src/app/services/notes.service';
     IonCardTitle,
     IonCardSubtitle,
     IonCardHeader,
-    IonCardContent
+    IonCardContent,
+    IonIcon,
+    IonPopover,
+    IonText
   ]
 })
 export class NotesComponent  implements OnInit {
   public notesInfo!: Note[] | undefined;
 
   constructor(private _notesService: NotesService) {
+    addIcons({ ellipse, informationCircle });
     this.loadNotesInfo();
    }
 
