@@ -1,0 +1,40 @@
+<ion-accordion-group>
+  <ion-accordion [value]="1" class="ion-padding">
+    <ion-item slot="header">
+      <ion-label>GOALS</ion-label>
+    </ion-item>
+    <ion-item slot="content" *ngFor="let g of goalsInfo" class="ion-padding" [color]="g.Status.color">
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{ g.name }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>From: {{formatDate(g.date_of_start)}}</ion-col>
+          <ion-col>To: {{formatDate(g.date_of_end)}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{g.description}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-accordion>
+  <ion-accordion [value]="2" class="ion-padding">
+    <ion-item slot="header">
+      <ion-label>TASKS</ion-label>
+    </ion-item>
+    <ion-item slot="content" *ngFor="let t of tasksInfo" class="ion-padding"  [color]="t.Status.color">
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{ t.name }}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>From: {{formatDate(t.date_of_start)}}</ion-col>
+          <ion-col>To: {{formatDate(t.date_of_end)}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>{{t.description}}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-accordion>
+</ion-accordion-group>

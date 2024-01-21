@@ -1,0 +1,33 @@
+<ion-accordion-group *ngIf="itemsInfo !== undefined">
+  <ion-accordion [value]="item.id" *ngFor="let item of itemsInfo" class="ion-padding">
+   
+    <ion-item slot="header" [color]="item.Status.color">
+        <ion-grid>
+          <ion-row>
+            <ion-col>{{item.name}} - {{item.status}}</ion-col>
+            <ion-col>{{item.Status.name}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-sliding slot="content">
+      <ion-item color="light">
+        <ion-grid>
+          <ion-row>
+            <ion-col>From: {{formatDate(item.date_of_start)}}</ion-col>
+            <ion-col>To: {{formatDate(item.date_of_end)}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>{{item.description}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="start" *ngIf="item.status !== 1">
+        <ion-item-option color="primary" (click)="changeStatus(item.id, 1)">Not Done</ion-item-option>
+      </ion-item-options>
+      <ion-item-options side="end">
+        <ion-item-option color="warning" *ngIf="item.status === 1" (click)="changeStatus(item.id, 2)">In Progress</ion-item-option>
+        <ion-item-option color="success" (click)="changeStatus(item.id, 3)">Done!</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-accordion>
+</ion-accordion-group>
