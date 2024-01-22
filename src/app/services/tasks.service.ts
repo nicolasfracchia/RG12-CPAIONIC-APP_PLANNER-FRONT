@@ -27,4 +27,8 @@ export class TasksService {
   createTask(frmData: FormData){
     return this.http.post<Task>('http://127.0.0.1:3000/tasks', frmData);
   }
+
+  deleteTask(taskId: number){
+    return this.http.delete<any>(`http://127.0.0.1:3000/tasks/${taskId}`);
+  }
 }
