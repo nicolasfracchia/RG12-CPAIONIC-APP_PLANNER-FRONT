@@ -4,6 +4,7 @@ import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonGri
 import { Task } from '../../interfeces/task';
 import { Goal } from '../../interfeces/goal';
 import { AchievementsService } from 'src/app/services/achievements.service';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-achievements',
@@ -28,7 +29,8 @@ import { AchievementsService } from 'src/app/services/achievements.service';
     IonRow,
     IonItemSliding,
     IonItemOptions,
-    IonItemOption
+    IonItemOption,
+    HeaderComponent
   ]
 })
 export class AchievementsComponent  implements OnInit {

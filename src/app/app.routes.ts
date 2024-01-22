@@ -22,6 +22,11 @@ export const routes: Routes = [
     import('./components/goals/goals.component').then((m) => m.GoalsComponent),
   },
   {
+    path: 'achievements',
+    loadComponent: () =>
+      import('./components/achievements/achievements.component').then((m) => m.AchievementsComponent),
+  },
+  {
     path: 'notes',
     loadComponent: () =>
     import('./components/notes/notes.component').then((m) => m.NotesComponent),
