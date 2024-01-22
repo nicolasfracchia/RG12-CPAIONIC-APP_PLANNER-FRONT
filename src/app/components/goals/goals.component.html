@@ -1,3 +1,5 @@
+<app-header pageTitle="GOALS LIST"></app-header>
+<ion-content [fullscreen]="true">
 <ion-accordion-group *ngIf="itemsInfo !== undefined">
   <ion-accordion [value]="item.id" *ngFor="let item of itemsInfo" class="ion-margin-vertical">
 
@@ -51,3 +53,4 @@
     </ion-item-sliding>
   </ion-accordion>
 </ion-accordion-group>
+</ion-content>

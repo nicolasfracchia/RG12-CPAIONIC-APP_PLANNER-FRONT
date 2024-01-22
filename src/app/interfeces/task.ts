@@ -1,3 +1,5 @@
+import { Status } from './status';
+
 export interface Task {
     "id": number,
     "name": string,
@@ -5,8 +7,5 @@ export interface Task {
     "date_of_start": string,
     "date_of_end": string,
     "status": number,
-    "Status": {
-        "name": string,
-        "color": string
-    }
+    "Status": Status
 }

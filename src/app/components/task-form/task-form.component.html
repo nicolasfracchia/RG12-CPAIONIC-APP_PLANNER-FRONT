@@ -1,0 +1,47 @@
+<app-header [pageTitle]="pageTitle"></app-header>
+
+<ion-content [fullscreen]="true">
+
+<form [formGroup]="taskForm">
+  <ion-list alignment="full">
+    <ion-item>
+      <ion-input label="Name" placeholder="Name" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Descripiton" placeholder="Descripiton" formControlName="description"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Date of start</ion-label>
+      <ion-datetime-button datetime="date_of_start"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="date_of_start" formControlName="date_of_start" displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+
+
+
+
+
+
+
+
+    <ion-item>
+      <ion-label>Date of end</ion-label>
+      <ion-datetime-button datetime="date_of_end"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="date_of_end" formControlName="date_of_end" displayFormat="DD/MM/YYYY"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Status" formControlName="status" placeholder="Select status">
+        <ion-select-option *ngFor="let s of statuses" [value]="s.id">{{s.name}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button expand="block" color="success" (click)="onSubmit()" [disabled]="taskForm.invalid">Submit</ion-button>
+  </ion-list>
+</form>
+</ion-content>

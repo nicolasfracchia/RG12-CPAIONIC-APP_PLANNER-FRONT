@@ -5,6 +5,7 @@ import { Note } from '../../interfeces/note';
 import { NotesService } from 'src/app/services/notes.service';
 import { ellipse, informationCircle } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-notes',
@@ -36,7 +37,8 @@ import { addIcons } from 'ionicons';
     IonCardContent,
     IonIcon,
     IonPopover,
-    IonText
+    IonText,
+    HeaderComponent
   ]
 })
 export class NotesComponent  implements OnInit {

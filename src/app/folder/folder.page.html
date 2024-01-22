@@ -10,6 +10,7 @@
 <ion-content [fullscreen]="true">
   
   <app-tasks *ngIf="folder === 'tasks'"></app-tasks>
+  <app-task-form *ngIf="folder === 'task-form'"></app-task-form>
   <app-goals *ngIf="folder === 'goals'"></app-goals>
   <app-achievements *ngIf="folder === 'achievements'"></app-achievements>
   <app-notes *ngIf="folder === 'notes'"></app-notes>

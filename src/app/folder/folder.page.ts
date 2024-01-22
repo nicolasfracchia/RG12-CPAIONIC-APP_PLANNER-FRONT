@@ -10,6 +10,7 @@ import { TasksComponent } from '../components/tasks/tasks.component'
 import { GoalsComponent } from '../components/goals/goals.component';
 import { AchievementsComponent } from '../components/achievements/achievements.component';
 import { NotesComponent } from '../components/notes/notes.component';
+import { TaskFormComponent } from '../components/task-form/task-form.component';
 
 @Component({
   selector: 'app-folder',
@@ -37,7 +38,8 @@ import { NotesComponent } from '../components/notes/notes.component';
     TasksComponent,
     GoalsComponent,
     AchievementsComponent,
-    NotesComponent
+    NotesComponent,
+    TaskFormComponent
   ],
 })
 export class FolderPage implements OnInit {

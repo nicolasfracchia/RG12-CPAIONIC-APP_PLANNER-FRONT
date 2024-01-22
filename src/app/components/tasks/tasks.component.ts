@@ -1,10 +1,12 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonFab, IonFabButton, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from '../../interfeces/task';
-import { ellipse, informationCircle } from 'ionicons/icons';
+import { ellipse, informationCircle, add, createOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { RouterLink } from '@angular/router';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-tasks',
@@ -32,18 +34,25 @@ import { addIcons } from 'ionicons';
     IonItemOption,
     IonIcon,
     IonPopover,
-    IonText
+    IonText,
+    IonFab,
+    IonFabButton,
+    RouterLink,
+    HeaderComponent
   ]
 })
 export class TasksComponent  implements OnInit {
+  title: string = "Tasks list"
   public itemsInfo!: Task[] | undefined;
 
   constructor(private _tasksService: TasksService, private datePipe: DatePipe) { 
-    addIcons({ ellipse, informationCircle });
+    addIcons({ ellipse, informationCircle, add, createOutline });
     this.loadTasksInfo();
   }
 
   ngOnInit() {}
+
+  ionViewWillEnter(){this.loadTasksInfo();}
 
   loadTasksInfo(){
     this._tasksService.getPendingTasks().subscribe((results) => {

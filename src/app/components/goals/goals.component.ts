@@ -5,6 +5,7 @@ import { GoalsService } from 'src/app/services/goals.service';
 import { Goal } from '../../interfeces/goal';
 import { ellipse, informationCircle } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
+import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-goals',
@@ -32,7 +33,8 @@ import { addIcons } from 'ionicons';
     IonItemOption,
     IonText,
     IonIcon,
-    IonPopover
+    IonPopover,
+    HeaderComponent
   ]
 })
 export class GoalsComponent  implements OnInit {
