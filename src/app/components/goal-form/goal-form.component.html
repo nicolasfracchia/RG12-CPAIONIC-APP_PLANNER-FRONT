@@ -2,7 +2,7 @@
 
 <ion-content [fullscreen]="true">
 
-<form [formGroup]="taskForm">
+<form [formGroup]="goalForm">
   <ion-list alignment="full">
     <ion-item>
       <ion-input label="Name" placeholder="Name" formControlName="name"></ion-input>
@@ -33,7 +33,7 @@
         <ion-select-option *ngFor="let s of statuses" [value]="s.id">{{s.name}}</ion-select-option>
       </ion-select>
     </ion-item>
-    <ion-button expand="block" color="success" (click)="onSubmit()" [disabled]="taskForm.invalid">Submit</ion-button>
+    <ion-button expand="block" color="success" (click)="onSubmit()" [disabled]="goalForm.invalid">Submit</ion-button>
   </ion-list>
 </form>
 </ion-content>

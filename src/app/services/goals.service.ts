@@ -20,4 +20,16 @@ export class GoalsService {
   updateGoalStatus(goalId:number, statusId:number){
     return this.http.patch<Goal>(`http://127.0.0.1:3000/goals/${goalId}`, {"status": statusId});
   }
+
+  getGoal(goalId:number){
+    return this.http.get<Goal>(`http://127.0.0.1:3000/goals/${goalId}`);
+  }
+
+  updateGoal(goalId:number, frmData: FormData){
+    return this.http.put<Goal>(`http://127.0.0.1:3000/goals/${goalId}`, {frmData});
+  }
+
+  createGoal(frmData: FormData){
+    return this.http.post<Goal>('http://127.0.0.1:3000/goals', frmData);
+  }
 }

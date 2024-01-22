@@ -46,12 +46,12 @@
       </ion-item>
 
       <ion-item-options side="start">
-        <ion-item-option [routerLink]="['/task-form',item.id]">
+        <ion-item-option color="warning" [routerLink]="['/task-form',item.id]">
           <ion-icon name="create-outline"></ion-icon>
           EDIT
         </ion-item-option>
-        <ion-item-option (click)="changeStatus(item.id, 1)">
-          <h5>DELETE</h5>
+        <ion-item-option color='danger' (click)="changeStatus(item.id, 1)">
+          DELETE
         </ion-item-option>
       </ion-item-options>
 

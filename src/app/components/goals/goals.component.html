@@ -1,56 +1,78 @@
 <app-header pageTitle="GOALS LIST"></app-header>
 <ion-content [fullscreen]="true">
-<ion-accordion-group *ngIf="itemsInfo !== undefined">
-  <ion-accordion [value]="item.id" *ngFor="let item of itemsInfo" class="ion-margin-vertical">
+  <ion-accordion-group *ngIf="itemsInfo !== undefined">
+    <ion-accordion [value]="item.id" *ngFor="let item of itemsInfo" class="ion-margin-vertical">
 
-    <ion-item slot="header">
-      
-      <ion-icon [id]="'status_popover_'+item.id" name="information-circle" [color]="item.Status.color"></ion-icon>
-      <ion-popover [trigger]="'status_popover_'+item.id" triggerAction="hover">
-        <ng-template>
-          <ion-content class="ion-padding">{{item.Status.name}}</ion-content>
-        </ng-template>
-      </ion-popover>
+      <ion-item slot="header">
 
-      <ion-text class="ion-margin-start"><h3>{{item.name}}</h3></ion-text>
+        <ion-icon [id]="'status_popover_'+item.id" name="information-circle" [color]="item.Status.color"></ion-icon>
+        <ion-popover [trigger]="'status_popover_'+item.id" triggerAction="hover">
+          <ng-template>
+            <ion-content class="ion-padding">{{item.Status.name}}</ion-content>
+          </ng-template>
+        </ion-popover>
 
-    </ion-item>
+        <ion-text class="ion-margin-start">
+          <h3>{{item.name}}</h3>
+        </ion-text>
 
-    <ion-item-sliding slot="content">
-
-      <ion-item [color]="item.Status.color">
-        <ion-grid [fixed]="true">
-          <ion-row>
-            <ion-col>
-              <ion-text>From: {{formatDate(item.date_of_start)}}</ion-text>
-            </ion-col>
-            <ion-col class="ion-text-end">
-              <ion-text>To: {{formatDate(item.date_of_end)}}</ion-text>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <ion-text>
-                <h5>{{item.description}}</h5>
-              </ion-text>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-        
-          
-        
       </ion-item>
 
-      <ion-item-options side="start" *ngIf="item.status !== 1">
-        <ion-item-option color="primary" (click)="changeStatus(item.id, 1)"><h5>Not Done</h5></ion-item-option>
-      </ion-item-options>
+      <ion-item-sliding slot="content">
 
-      <ion-item-options side="end">
-        <ion-item-option color="warning" *ngIf="item.status === 1" (click)="changeStatus(item.id, 2)"><h5>In Progress</h5></ion-item-option>
-        <ion-item-option color="success" (click)="changeStatus(item.id, 3)"><h5>Done!</h5></ion-item-option>
-      </ion-item-options>
+        <ion-item [color]="item.Status.color">
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col>
+                <ion-text>From: {{formatDate(item.date_of_start)}}</ion-text>
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <ion-text>To: {{formatDate(item.date_of_end)}}</ion-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-text>
+                  <h5>{{item.description}}</h5>
+                </ion-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
 
-    </ion-item-sliding>
-  </ion-accordion>
-</ion-accordion-group>
+
+
+        </ion-item>
+
+        <ion-item-options side="start">
+          <ion-item-option color="warning" [routerLink]="['/goal-form',item.id]">
+            <ion-icon name="create-outline"></ion-icon>
+            EDIT
+          </ion-item-option>
+          <ion-item-option color='danger' (click)="changeStatus(item.id, 1)">
+            DELETE
+          </ion-item-option>
+        </ion-item-options>
+
+        <ion-item-options side="end">
+          <ion-item-option color="primary" (click)="changeStatus(item.id, 1)" *ngIf="item.status !== 1">
+            <h5>Not Done</h5>
+          </ion-item-option>
+          <ion-item-option color="warning" (click)="changeStatus(item.id, 2)" *ngIf="item.status === 1">
+            <h5>In Progress</h5>
+          </ion-item-option>
+          <ion-item-option color="success" (click)="changeStatus(item.id, 3)">
+            <h5>Done!</h5>
+          </ion-item-option>
+        </ion-item-options>
+
+      </ion-item-sliding>
+    </ion-accordion>
+  </ion-accordion-group>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [routerLink]="['/goal-form']">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>

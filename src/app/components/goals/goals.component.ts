@@ -1,11 +1,12 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonFab, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
 import { GoalsService } from 'src/app/services/goals.service';
 import { Goal } from '../../interfeces/goal';
-import { ellipse, informationCircle } from 'ionicons/icons';
+import { ellipse, informationCircle, add } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { HeaderComponent } from '../header/header.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-goals',
@@ -34,18 +35,22 @@ import { HeaderComponent } from '../header/header.component';
     IonText,
     IonIcon,
     IonPopover,
-    HeaderComponent
+    HeaderComponent,
+    RouterLink,
+    IonFab
   ]
 })
 export class GoalsComponent  implements OnInit {
   public itemsInfo!: Goal[] | undefined;
 
   constructor(private _goalsService: GoalsService, private datePipe: DatePipe) { 
-    addIcons({ ellipse, informationCircle });
+    addIcons({ ellipse, informationCircle, add });
     this.loadGoalsInfo();
   }
 
   ngOnInit() {}
+
+  ionViewWillEnter(){this.loadGoalsInfo();}
 
   loadGoalsInfo(){
     this._goalsService.getPendingGoals().subscribe((results) => {
