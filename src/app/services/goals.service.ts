@@ -32,4 +32,8 @@ export class GoalsService {
   createGoal(frmData: FormData){
     return this.http.post<Goal>('http://127.0.0.1:3000/goals', frmData);
   }
+
+  deleteGoal(goalId: number){
+    return this.http.delete<Goal>(`http://127.0.0.1:3000/goals/${goalId}`);
+  }
 }

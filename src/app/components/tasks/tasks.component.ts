@@ -98,7 +98,7 @@ export class TasksComponent  implements OnInit {
 
   deleteTaskConfirmed(taskId:number){
     this._tasksService.deleteTask(taskId).subscribe(
-      () => {
+      (result:Task) => {
         this.presentToast('success', 'Task deleted successfully');
         this.loadTasksInfo();
       },

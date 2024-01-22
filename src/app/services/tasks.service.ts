@@ -29,6 +29,6 @@ export class TasksService {
   }
 
   deleteTask(taskId: number){
-    return this.http.delete<any>(`http://127.0.0.1:3000/tasks/${taskId}`);
+    return this.http.delete<Task>(`http://127.0.0.1:3000/tasks/${taskId}`);
   }
 }

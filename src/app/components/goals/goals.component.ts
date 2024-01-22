@@ -1,6 +1,6 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonFab, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { AlertController, IonAccordion, IonAccordionGroup, IonButtons, IonCol, IonContent, IonFab, IonGrid, IonHeader, IonIcon, IonItem, IonItemOption, IonItemOptions, IonItemSliding, IonLabel, IonMenuButton, IonPopover, IonRow, IonText, IonTitle, IonToolbar, ToastController } from '@ionic/angular/standalone';
 import { GoalsService } from 'src/app/services/goals.service';
 import { Goal } from '../../interfeces/goal';
 import { ellipse, informationCircle, add } from 'ionicons/icons';
@@ -43,7 +43,12 @@ import { RouterLink } from '@angular/router';
 export class GoalsComponent  implements OnInit {
   public itemsInfo!: Goal[] | undefined;
 
-  constructor(private _goalsService: GoalsService, private datePipe: DatePipe) { 
+  constructor(
+    private _goalsService: GoalsService, 
+    private datePipe: DatePipe,
+    private toastController: ToastController,
+    private alertController: AlertController
+  ) { 
     addIcons({ ellipse, informationCircle, add });
     this.loadGoalsInfo();
   }
@@ -64,5 +69,51 @@ export class GoalsComponent  implements OnInit {
 
   formatDate(date: string): string {
     return<string> this.datePipe.transform(date, 'dd/MM/yyyy');
+  }
+
+  async deleteGoal(goal:Goal){
+    const dateFormattedFrom = this.datePipe.transform(goal.date_of_start, 'dd/MM/yyyy');
+    const dateFormattedTo = this.datePipe.transform(goal.date_of_end, 'dd/MM/yyyy');
+
+    const alert = await this.alertController.create({
+      header: `Are you sure you want to delete this goal?`,
+      subHeader: `${goal.name} - ${goal.Status.name}`,
+      message: `date: ${dateFormattedFrom} - ${dateFormattedTo}`,
+      buttons: [
+        {text: 'Cancel',role: 'cancel'},
+        {
+          text: 'Delete',
+          cssClass: 'danger',
+          handler: () => {
+            this.deleteGoalConfirmed(goal.id);
+          }
+        }
+      ]
+    });
+  
+    await alert.present();
+  }
+
+  deleteGoalConfirmed(goalId:number){
+    this._goalsService.deleteGoal(goalId).subscribe(
+      (result:Goal) => {
+        this.presentToast('success', 'Goal deleted successfully');
+        this.loadGoalsInfo();
+      },
+      (error:any) => {
+        this.presentToast('danger', "Error deleting the goal: " + error.message);
+      }
+    );
+  }
+
+  async presentToast(color:string, message:string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+      position: 'middle',
+      color: color
+    });
+
+    await toast.present();
   }
 }
