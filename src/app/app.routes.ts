@@ -42,20 +42,18 @@ export const routes: Routes = [
     import('./components/notes/notes.component').then((m) => m.NotesComponent),
   },
   {
+    path: 'note-form',
+    loadComponent: () =>
+    import('./components/note-form/note-form.component').then((m) => m.NoteFormComponent),
+  },
+  {
+    path: 'note-form/:id-note',
+    loadComponent: () =>
+    import('./components/note-form/note-form.component').then((m) => m.NoteFormComponent),
+  },
+  {
     path: '',
     redirectTo: 'tasks',
     pathMatch: 'full',
-  },
-  /*
-  {
-    path: ':id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
-  {
-    path: ':id/:id-item',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
-  */
+  }
 ];
